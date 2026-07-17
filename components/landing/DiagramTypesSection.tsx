@@ -14,7 +14,6 @@ import {
 } from "lucide-react";
 import { DIAGRAM_TYPES } from "@/constants/diagramTypes";
 
-// Map the string icon names to actual Lucide components
 const iconMap: Record<string, LucideIcon> = {
   GitBranch,
   ArrowLeftRight,
@@ -26,24 +25,24 @@ const iconMap: Record<string, LucideIcon> = {
 
 export default function DiagramTypesSection() {
   return (
-    <section className="w-full bg-[#F9FAFB] py-20">
+    <section className="w-full py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="flex flex-col items-center text-center gap-4 mb-16">
-          <span className="text-xs font-bold uppercase tracking-widest text-indigo-600">
+        <div className="flex flex-col">
+          <span className="text-sm font-semibold uppercase tracking-widest text-indigo-600 text-center mb-3">
             Diagram Types
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 text-center mb-4">
             Everything You Need to Visualize
           </h2>
-          <p className="text-base sm:text-lg text-gray-500 max-w-2xl">
+          <p className="text-gray-600 leading-relaxed text-center max-w-2xl mx-auto">
             From simple flowcharts to complex database schemas, we support all
             major diagram types.
           </p>
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
           {DIAGRAM_TYPES.map((type, index) => {
             const IconComponent = iconMap[type.icon];
 
@@ -59,24 +58,21 @@ export default function DiagramTypesSection() {
                   ease: "easeOut",
                 }}
               >
-                <div className="group relative flex flex-col h-full bg-white border border-gray-200 rounded-xl p-6 transition-all duration-300 hover:border-indigo-500 hover:shadow-lg hover:-translate-y-1">
-                  {/* Icon */}
-                  <div className="mb-5 inline-flex items-center justify-center p-3 rounded-lg bg-indigo-600 text-white w-fit shadow-md">
-                    {IconComponent && <IconComponent size={24} strokeWidth={2} />}
+                <div className="bg-white border border-gray-200 rounded-2xl p-6 hover:border-indigo-400 hover:shadow-lg transition-all duration-300 cursor-pointer h-full flex flex-col group">
+                  <div className="bg-indigo-50 group-hover:bg-indigo-100 rounded-xl p-3 w-fit mb-4 transition-colors duration-300">
+                    {IconComponent && <IconComponent size={24} className="text-indigo-600" />}
                   </div>
 
-                  {/* Content */}
                   <h3 className="text-lg font-bold text-gray-900 mb-2">
                     {type.label}
                   </h3>
-                  <p className="text-sm text-gray-500 leading-relaxed mb-6 flex-grow">
+                  <p className="text-gray-600 text-sm mb-4 flex-grow">
                     {type.description}
                   </p>
 
-                  {/* Link */}
                   <Link
                     href="/diagrams/add"
-                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-600 hover:text-indigo-700 transition-colors mt-auto group-hover:underline"
+                    className="text-indigo-600 text-sm font-medium hover:text-indigo-800 flex items-center gap-1.5"
                   >
                     Try it <ArrowRight size={16} />
                   </Link>

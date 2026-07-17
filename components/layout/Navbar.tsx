@@ -41,7 +41,7 @@ export default function Navbar() {
     }`;
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-200">
+    <header className="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-gray-200/80 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-6">
 
         {/* ── Logo ── */}
@@ -89,7 +89,7 @@ export default function Navbar() {
                 </Link>
                 <Link
                   href="/register"
-                  className="text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 transition-colors duration-150 px-4 py-2 rounded-lg"
+                  className="text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 transition-all duration-200 px-6 py-3 rounded-xl"
                 >
                   Get Started
                 </Link>
@@ -154,7 +154,7 @@ export default function Navbar() {
                 </Link>
                 <Link
                   href="/register"
-                  className="text-sm font-semibold text-center text-white bg-indigo-600 hover:bg-indigo-700 transition-colors px-4 py-2 rounded-lg"
+                  className="text-sm font-semibold text-center text-white bg-indigo-600 hover:bg-indigo-700 transition-all duration-200 px-6 py-3 rounded-xl"
                   onClick={() => setMobileOpen(false)}
                 >
                   Get Started

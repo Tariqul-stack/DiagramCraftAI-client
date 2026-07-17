@@ -56,21 +56,16 @@ function DiagramPreview() {
 
 export default function HeroSection() {
   return (
-    <section
-      className="w-full min-h-[70vh] flex items-center overflow-hidden"
-      style={{
-        background: "linear-gradient(135deg, #1E1B4B 0%, #312E81 50%, #3730A3 100%)",
-      }}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <section className="w-full min-h-[70vh] bg-gradient-to-br from-[#1E1B4B] via-indigo-900 to-indigo-800 flex items-center overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
           {/* ── Left column ── */}
           <motion.div
             initial={{ opacity: 0, x: -48 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.65, ease: "easeOut" }}
-            className="flex flex-col gap-7"
+            className="flex flex-col gap-6"
           >
             {/* Badge */}
             <motion.div
@@ -87,15 +82,7 @@ export default function HeroSection() {
             {/* Heading */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-white">
               Transform Your Ideas Into{" "}
-              <span
-                className="block"
-                style={{
-                  background: "linear-gradient(90deg, #a78bfa, #818cf8, #c4b5fd)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
+              <span className="block bg-gradient-to-r from-violet-400 via-indigo-400 to-violet-300 bg-clip-text text-transparent">
                 Beautiful Diagrams
               </span>
             </h1>
@@ -110,14 +97,14 @@ export default function HeroSection() {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/diagrams/add"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 text-white text-sm font-semibold transition-all duration-150 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-400/40 hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 text-white text-sm font-semibold transition-all duration-200 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-400/40 hover:-translate-y-0.5"
               >
                 Create Your First Diagram
                 <ArrowRight size={16} />
               </Link>
               <Link
                 href="/explore"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-white/30 hover:border-white/60 bg-transparent hover:bg-white/10 text-white text-sm font-semibold transition-all duration-150 hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/30 hover:border-white/60 bg-transparent hover:bg-white/10 text-white text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5"
               >
                 View Gallery
               </Link>

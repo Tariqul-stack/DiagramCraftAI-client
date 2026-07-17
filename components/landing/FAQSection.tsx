@@ -45,42 +45,36 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="w-full bg-white py-20">
+    <section className="w-full py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="flex flex-col items-center text-center gap-4 mb-16">
-          <span className="text-xs font-bold uppercase tracking-widest text-indigo-600">
+        <div className="flex flex-col">
+          <span className="text-sm font-semibold uppercase tracking-widest text-indigo-600 text-center mb-3">
             FAQ
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 text-center mb-4">
             Frequently Asked Questions
           </h2>
-          <p className="text-base sm:text-lg text-gray-500 max-w-2xl">
+          <p className="text-gray-600 leading-relaxed text-center max-w-2xl mx-auto">
             Everything you need to know about DiagramCraft AI.
           </p>
         </div>
 
         {/* FAQ Accordion */}
-        <div className="max-w-3xl mx-auto flex flex-col">
+        <div className="max-w-3xl mx-auto mt-16">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
               <div
                 key={faq.question}
-                className={`border-b border-gray-200 transition-colors duration-200 ${
-                  isOpen ? "bg-indigo-50/50 border-l-4 border-l-indigo-600" : "border-l-4 border-l-transparent"
-                }`}
+                className="border-b border-gray-200 last:border-0"
               >
                 <button
                   onClick={() => toggleOpen(index)}
-                  className="w-full flex items-center justify-between text-left py-5 px-6 focus:outline-none"
+                  className="w-full flex justify-between items-center py-5 px-2 text-left hover:bg-gray-50 rounded-lg transition-colors focus:outline-none"
                   aria-expanded={isOpen}
                 >
-                  <span
-                    className={`text-lg font-bold transition-colors ${
-                      isOpen ? "text-indigo-900" : "text-gray-900"
-                    }`}
-                  >
+                  <span className="font-semibold text-gray-900 text-base pr-4">
                     {faq.question}
                   </span>
                   <ChevronDown
@@ -99,7 +93,7 @@ export default function FAQSection() {
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="pb-6 px-6 text-gray-600 leading-relaxed">
+                      <div className="px-2 pb-6 text-gray-600 leading-relaxed">
                         {faq.answer}
                       </div>
                     </motion.div>

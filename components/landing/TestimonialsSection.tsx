@@ -35,23 +35,23 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="w-full bg-[#F9FAFB] py-20">
+    <section className="w-full py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="flex flex-col items-center text-center gap-4 mb-16">
-          <span className="text-xs font-bold uppercase tracking-widest text-indigo-600">
+        <div className="flex flex-col">
+          <span className="text-sm font-semibold uppercase tracking-widest text-indigo-600 text-center mb-3">
             Testimonials
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 text-center mb-4">
             What Our Users Say
           </h2>
-          <p className="text-base sm:text-lg text-gray-500 max-w-2xl">
+          <p className="text-gray-600 leading-relaxed text-center max-w-2xl mx-auto">
             Thousands of developers and teams trust DiagramCraft AI.
           </p>
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.name}
@@ -63,7 +63,7 @@ export default function TestimonialsSection() {
                 delay: index * 0.1,
                 ease: "easeOut",
               }}
-              className="flex flex-col h-full bg-white border border-gray-200 rounded-xl p-8 shadow-sm relative"
+              className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full relative overflow-hidden"
             >
               {/* Quotation Mark Icon */}
               <div className="absolute top-6 right-6 text-indigo-100">
@@ -71,7 +71,7 @@ export default function TestimonialsSection() {
               </div>
 
               {/* Stars */}
-              <div className="flex items-center gap-1 mb-6 relative z-10">
+              <div className="flex gap-1 mb-4 relative z-10">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
@@ -82,14 +82,14 @@ export default function TestimonialsSection() {
               </div>
 
               {/* Quote */}
-              <p className="text-gray-700 leading-relaxed italic flex-grow mb-8 relative z-10">
+              <p className="text-gray-700 mb-6 leading-relaxed italic flex-grow relative z-10">
                 "{testimonial.quote}"
               </p>
 
               {/* User Info */}
-              <div className="flex items-center gap-4 mt-auto">
+              <div className="flex items-center gap-3 mt-auto">
                 <div
-                  className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0 ${testimonial.avatarBg}`}
+                  className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0 ${testimonial.avatarBg}`}
                 >
                   {testimonial.initials}
                 </div>
@@ -98,7 +98,7 @@ export default function TestimonialsSection() {
                     {testimonial.name}
                   </span>
                   <div className="flex items-center flex-wrap text-xs text-gray-500 mt-0.5">
-                    <span>{testimonial.role}</span>
+                    <span className="text-gray-500 text-xs">{testimonial.role}</span>
                     <span className="mx-1.5 text-gray-300">•</span>
                     <span className="text-indigo-600 font-medium">
                       {testimonial.company}

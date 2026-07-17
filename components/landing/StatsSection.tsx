@@ -49,52 +49,46 @@ const stats = [
 
 export default function StatsSection() {
   return (
-    <section className="w-full bg-indigo-600 py-20 text-white overflow-hidden">
+    <section className="w-full py-24 bg-indigo-600">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="flex flex-col items-center text-center gap-4 mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">
+        <div className="flex flex-col">
+          <span className="text-sm font-semibold uppercase tracking-widest text-indigo-200 text-center mb-3">
+            Stats
+          </span>
+          <h2 className="text-3xl lg:text-4xl font-bold text-white text-center mb-4">
             Trusted by Developers and Teams Worldwide
           </h2>
-          <p className="text-base sm:text-lg text-indigo-200 max-w-2xl">
+          <p className="text-indigo-100 leading-relaxed text-center max-w-2xl mx-auto">
             Join thousands of users already creating diagrams with AI.
           </p>
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 relative">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
-              <div
+              <motion.div
                 key={stat.label}
-                className={`relative flex flex-col items-center text-center px-4 ${
-                  // Add border between items on desktop, except for the last one
-                  index < stats.length - 1
-                    ? "lg:border-r lg:border-indigo-500/50"
-                    : ""
-                }`}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.15,
+                  ease: "easeOut",
+                }}
+                className="flex flex-col items-center gap-3 text-center"
               >
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{
-                    duration: 0.6,
-                    delay: index * 0.15,
-                    ease: "easeOut",
-                  }}
-                  className="flex flex-col items-center"
-                >
-                  <Icon size={32} className="mb-4 text-white opacity-90" />
-                  <div className="text-4xl font-extrabold tracking-tight mb-2">
-                    <Counter to={stat.value} suffix={stat.suffix} />
-                  </div>
-                  <div className="text-sm font-medium text-indigo-200 uppercase tracking-wider">
-                    {stat.label}
-                  </div>
-                </motion.div>
-              </div>
+                <Icon size={32} className="text-white opacity-90" />
+                <div className="text-5xl font-extrabold text-white">
+                  <Counter to={stat.value} suffix={stat.suffix} />
+                </div>
+                <div className="text-indigo-200 text-sm font-medium uppercase tracking-wider">
+                  {stat.label}
+                </div>
+              </motion.div>
             );
           })}
         </div>

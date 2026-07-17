@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MessageSquare, Zap, Share2, ArrowRight } from "lucide-react";
+import { MessageSquare, Zap, Share2 } from "lucide-react";
 
 const steps = [
   {
@@ -29,58 +29,45 @@ const steps = [
 
 export default function HowItWorksSection() {
   return (
-    <section className="w-full bg-white py-20">
+    <section className="w-full py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="flex flex-col items-center text-center gap-4 mb-16">
-          <span className="text-xs font-bold uppercase tracking-widest text-indigo-600">
+        <div className="flex flex-col">
+          <span className="text-sm font-semibold uppercase tracking-widest text-indigo-600 text-center mb-3">
             How It Works
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 text-center mb-4">
             Generate Diagrams in 3 Simple Steps
           </h2>
-          <p className="text-base sm:text-lg text-gray-500 max-w-2xl">
+          <p className="text-gray-600 leading-relaxed text-center max-w-2xl mx-auto">
             No design skills needed. Just describe what you want.
           </p>
         </div>
 
         {/* Steps Grid */}
-        <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
           {steps.map((step, index) => (
-            <div key={step.num} className="relative flex flex-col items-center">
-              {/* Card */}
-              <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.5, delay: index * 0.2, ease: "easeOut" }}
-                className="w-full flex flex-col items-center text-center bg-white border border-gray-200 rounded-xl p-8 shadow-sm hover:shadow-xl transition-shadow duration-300 z-10"
-              >
-                {/* Number & Icon */}
-                <div className="relative mb-6">
-                  <span className="text-7xl font-black text-indigo-50 leading-none select-none">
-                    {step.num}
-                  </span>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <step.icon size={28} className="text-indigo-600" />
-                  </div>
-                </div>
-
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  {step.title}
-                </h3>
-                <p className="text-sm text-gray-500 leading-relaxed">
-                  {step.description}
-                </p>
-              </motion.div>
-
-              {/* Arrow connecting to next step (Desktop only) */}
-              {index < steps.length - 1 && (
-                <div className="hidden md:flex absolute top-1/2 -right-6 lg:-right-8 -translate-y-1/2 z-0 text-gray-300">
-                  <ArrowRight size={24} />
-                </div>
-              )}
-            </div>
+            <motion.div
+              key={step.num}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5, delay: index * 0.2, ease: "easeOut" }}
+              className="bg-white border border-gray-100 rounded-2xl p-8 text-center shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden"
+            >
+              <div className="text-6xl font-bold text-indigo-100 mb-4">
+                {step.num}
+              </div>
+              <div className="flex justify-center mb-4">
+                <step.icon size={28} className="text-indigo-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                {step.title}
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                {step.description}
+              </p>
+            </motion.div>
           ))}
         </div>
       </div>

@@ -51,24 +51,24 @@ const features = [
 
 export default function FeaturesSection() {
   return (
-    <section className="w-full bg-white py-20">
+    <section className="w-full py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="flex flex-col items-center text-center gap-4 mb-16">
-          <span className="text-xs font-bold uppercase tracking-widest text-indigo-600">
+        <div className="flex flex-col">
+          <span className="text-sm font-semibold uppercase tracking-widest text-indigo-600 text-center mb-3">
             Features
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 text-center mb-4">
             Why Choose DiagramCraft AI?
           </h2>
-          <p className="text-base sm:text-lg text-gray-500 max-w-2xl">
+          <p className="text-gray-600 leading-relaxed text-center max-w-2xl mx-auto">
             Everything you need to create, manage and share professional
             diagrams.
           </p>
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
@@ -83,17 +83,15 @@ export default function FeaturesSection() {
                   ease: "easeOut",
                 }}
               >
-                <div className="flex flex-col h-full bg-white border border-gray-200 rounded-xl p-6 transition-all duration-300 hover:border-indigo-500 hover:shadow-lg">
-                  {/* Icon */}
-                  <div className="mb-5 inline-flex items-center justify-center p-3 rounded-lg bg-indigo-50 text-indigo-600 w-fit">
-                    <Icon size={24} strokeWidth={2} />
+                <div className="border border-gray-100 rounded-2xl p-6 bg-white hover:shadow-lg hover:border-indigo-200 transition-all duration-300 h-full flex flex-col">
+                  <div className="bg-indigo-50 rounded-xl p-3 w-fit mb-4">
+                    <Icon size={24} className="text-indigo-600" />
                   </div>
 
-                  {/* Content */}
                   <h3 className="text-lg font-bold text-gray-900 mb-2">
                     {feature.title}
                   </h3>
-                  <p className="text-sm text-gray-500 leading-relaxed flex-grow">
+                  <p className="text-gray-600 text-sm leading-relaxed flex-grow">
                     {feature.description}
                   </p>
                 </div>

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Zap, Github, Twitter, Linkedin } from "lucide-react";
+import { Zap } from "lucide-react";
+import { FaGithub, FaTwitter, FaLinkedin } from "react-icons/fa";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -23,9 +24,9 @@ const supportLinks = [
 ];
 
 const socialLinks = [
-  { label: "GitHub", href: "#", icon: Github },
-  { label: "Twitter", href: "#", icon: Twitter },
-  { label: "LinkedIn", href: "#", icon: Linkedin },
+  { label: "GitHub", href: "#", icon: FaGithub },
+  { label: "Twitter", href: "#", icon: FaTwitter },
+  { label: "LinkedIn", href: "#", icon: FaLinkedin },
 ];
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -62,14 +63,14 @@ function FooterLinkGroup({
 
 export default function Footer() {
   return (
-    <footer style={{ backgroundColor: "#1E1B4B" }} className="w-full text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <footer className="w-full bg-[#1E1B4B] text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
 
         {/* ── 4-column grid ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
 
           {/* Column 1 — Brand */}
-          <div className="flex flex-col gap-5 sm:col-span-2 lg:col-span-1">
+          <div className="flex flex-col gap-5">
             <Link href="/" className="flex items-center gap-2 w-fit">
               <Zap size={20} className="text-indigo-400" />
               <span className="text-base font-bold tracking-tight">
@@ -108,7 +109,7 @@ export default function Footer() {
         </div>
 
         {/* ── Bottom bar ── */}
-        <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-sm text-gray-500">
             © 2025 DiagramCraft AI. All rights reserved.
           </p>
