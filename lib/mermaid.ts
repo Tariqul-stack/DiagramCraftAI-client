@@ -1,0 +1,2 @@
+// Mermaid.js utilities
+export {};
