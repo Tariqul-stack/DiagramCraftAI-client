@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useGetMe } from "@/hooks/useAuth";
 
@@ -9,24 +9,22 @@ export default function ProtectedLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const { data: user, isLoading } = useGetMe();
   const router = useRouter();
-  const { data: user, isLoading, isError } = useGetMe();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    if (!isLoading && (!user || isError)) {
-      if (isError) {
-        localStorage.removeItem("token");
-      }
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (mounted && !isLoading && !user) {
       router.push("/login");
     }
-  }, [isLoading, user, isError, router]);
+  }, [mounted, isLoading, user, router]);
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="animate-spin rounded-full h-10 w-10 border-4 border-indigo-600 border-t-transparent"></div>
-      </div>
-    );
+  if (!mounted || isLoading) {
+    return null;
   }
 
   if (!user) {

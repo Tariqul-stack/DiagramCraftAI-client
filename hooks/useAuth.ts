@@ -25,9 +25,15 @@ export function useRegister() {
     Error,
     { name: string; email: string; password: string }
   >({
-    mutationFn: (data) => api.post<AuthResponse>("/api/auth/register", data).then((res) => res.data),
-    onSuccess: (data) => {
-      localStorage.setItem("token", data.data.token);
+    mutationFn: async (data) => {
+      const response = await api.post<AuthResponse>("/api/auth/register", data);
+      return response.data;
+    },
+    onSuccess: (response: any) => {
+      const token = response?.data?.token || response?.token;
+      if (token) {
+        localStorage.setItem("token", token);
+      }
       queryClient.invalidateQueries({ queryKey: ["me"] });
     },
   });
@@ -37,9 +43,15 @@ export function useRegister() {
 
 export function useLogin() {
   return useMutation<AuthResponse, Error, { email: string; password: string }>({
-    mutationFn: (data) => api.post<AuthResponse>("/api/auth/login", data).then((res) => res.data),
-    onSuccess: (data) => {
-      localStorage.setItem("token", data.data.token);
+    mutationFn: async (data) => {
+      const response = await api.post<AuthResponse>("/api/auth/login", data);
+      return response.data;
+    },
+    onSuccess: (response: any) => {
+      const token = response?.data?.token || response?.token;
+      if (token) {
+        localStorage.setItem("token", token);
+      }
       queryClient.invalidateQueries({ queryKey: ["me"] });
     },
   });

@@ -68,7 +68,7 @@ export default function LoginPage() {
         if (axios.isAxiosError(error)) {
           setLoginError(
             error.response?.data?.message ||
-              "Failed to login with demo account. Please try again.",
+            "Failed to login with demo account. Please try again.",
           );
         } else {
           setLoginError(error.message || "An unexpected error occurred.");
@@ -162,7 +162,7 @@ export default function LoginPage() {
             disabled={isPending}
             className="w-full border border-indigo-200 text-indigo-700 bg-indigo-50 hover:bg-indigo-100 rounded-xl py-2.5 font-medium transition-colors flex justify-center items-center gap-2 disabled:opacity-70"
           >
-            🚀 Demo Login (Auto Fill)
+            Demo Login (Auto Fill)
           </button>
 
           <button
