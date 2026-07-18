@@ -83,7 +83,7 @@ export default function TestimonialsSection() {
 
               {/* Quote */}
               <p className="text-gray-700 mb-6 leading-relaxed italic flex-grow relative z-10">
-                "{testimonial.quote}"
+                &ldquo;{testimonial.quote}&rdquo;
               </p>
 
               {/* User Info */}

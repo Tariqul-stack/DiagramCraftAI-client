@@ -13,7 +13,7 @@ import {
   Loader2,
   type LucideIcon,
 } from "lucide-react";
-import mermaid from "mermaid";
+import { renderMermaid } from "@/lib/mermaid";
 import { DIAGRAM_TYPES } from "@/constants/diagramTypes";
 import { PROMPT_SUGGESTIONS } from "@/constants/promptTemplates";
 import { useAIGenerate, useAIRegenerate } from "@/hooks/useAIGenerate";
@@ -46,29 +46,11 @@ export default function DiagramAddPage() {
   const isGenerating = aiGenerate.isPending || aiRegenerate.isPending;
 
   useEffect(() => {
-    mermaid.initialize({
-      startOnLoad: false,
-      theme: "default",
-      securityLevel: "loose",
-    });
-  }, []);
-
-  useEffect(() => {
     if (!mermaidCode) {
       return;
     }
 
-    const renderDiagram = async () => {
-      try {
-        await mermaid.run({
-          querySelector: "#diagram-preview .mermaid",
-        });
-      } catch (error) {
-        console.error("Failed to render Mermaid diagram", error);
-      }
-    };
-
-    renderDiagram();
+    renderMermaid("#diagram-preview .mermaid");
   }, [mermaidCode]);
 
   const handleGenerate = () => {

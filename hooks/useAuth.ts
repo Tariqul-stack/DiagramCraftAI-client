@@ -13,6 +13,7 @@ export function useGetMe() {
       return response.data.data.user;
     },
     enabled: typeof window !== "undefined" && !!localStorage.getItem("token"),
+    retry: false,
   });
 }
 

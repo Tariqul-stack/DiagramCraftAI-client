@@ -88,6 +88,8 @@ export function useToggleLike() {
     },
     onSuccess: (_data, id) => {
       queryClient.invalidateQueries({ queryKey: ["diagram", id] });
+      queryClient.invalidateQueries({ queryKey: ["diagrams"] });
+      queryClient.invalidateQueries({ queryKey: ["myDiagrams"] });
     },
   });
 }

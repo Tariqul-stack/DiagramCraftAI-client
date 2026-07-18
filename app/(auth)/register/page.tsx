@@ -44,8 +44,13 @@ export default function RegisterPage() {
 
   const onSubmit = (data: RegisterFormValues) => {
     setRegisterError(null);
-    const { confirmPassword, ...registerData } = data;
-    registerUser(registerData, {
+    registerUser(
+      {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      },
+      {
       onSuccess: () => {
         router.push("/dashboard");
       },
@@ -62,8 +67,7 @@ export default function RegisterPage() {
   };
 
   const handleGoogleSignup = () => {
-    // Placeholder function for Google Signup
-    console.log("Google Signup initiated");
+    setRegisterError("Google signup is not available yet.");
   };
 
   return (

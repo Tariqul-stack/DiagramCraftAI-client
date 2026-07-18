@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { useGetDiagramById, useToggleLike } from "@/hooks/useDiagrams";
 import { AIChatPanel } from "@/components/ai/AIChatPanel";
-import mermaid from "mermaid";
+import { renderMermaid } from "@/lib/mermaid";
 import { Heart, Share2, Copy, Check, ArrowLeft, Plus } from "lucide-react";
 
 export default function DiagramDetailsPage() {
@@ -13,31 +13,18 @@ export default function DiagramDetailsPage() {
   const id = params.id as string;
 
   const { data: diagram, isLoading, error } = useGetDiagramById(id);
-  const { mutate: toggleLike } = useToggleLike();
+  const { mutate: toggleLike, isPending: isLikePending } = useToggleLike();
 
   const [copiedCode, setCopiedCode] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
-  // Add a key to force re-render of mermaid container when code changes
-  const [mermaidKey, setMermaidKey] = useState(0);
 
   useEffect(() => {
-    if (diagram?.mermaidCode) {
-      mermaid.initialize({ startOnLoad: false, theme: "default" });
-      try {
-        mermaid.run({ querySelector: "#mermaid-preview" });
-      } catch (err) {
-        console.error("Mermaid parsing error:", err);
-      }
+    if (!diagram?.mermaidCode) {
+      return;
     }
-  }, [diagram?.mermaidCode, mermaidKey]);
 
-  // If the diagram object changes (e.g. from cache to network response),
-  // we might need to recreate the container so mermaid can re-render.
-  useEffect(() => {
-    if (diagram) {
-      setMermaidKey((prev) => prev + 1);
-    }
-  }, [diagram]);
+    renderMermaid("#diagram-preview .mermaid");
+  }, [diagram?.mermaidCode]);
 
   if (isLoading) {
     return (
@@ -151,8 +138,10 @@ export default function DiagramDetailsPage() {
               <h2 className="text-lg font-bold text-gray-900 mb-6">Diagram Preview</h2>
               
               <div className="w-full overflow-x-auto bg-gray-50 rounded-xl border border-gray-100 p-4 mb-6 flex justify-center min-h-[300px]">
-                <div id="mermaid-preview" key={mermaidKey} className="w-full flex justify-center items-center">
-                  {diagram.mermaidCode}
+                <div id="diagram-preview" className="w-full flex justify-center items-center">
+                  <div key={diagram.mermaidCode} className="mermaid">
+                    {diagram.mermaidCode}
+                  </div>
                 </div>
               </div>
 
@@ -205,7 +194,8 @@ export default function DiagramDetailsPage() {
               <div className="grid grid-cols-2 gap-3 mb-4">
                 <button
                   onClick={() => toggleLike(id)}
-                  className="flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl border border-gray-200 hover:bg-gray-50 hover:border-red-200 group transition-colors"
+                  disabled={isLikePending}
+                  className="flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl border border-gray-200 hover:bg-gray-50 hover:border-red-200 group transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Heart
                     size={20}

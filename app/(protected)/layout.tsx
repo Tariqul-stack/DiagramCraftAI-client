@@ -10,13 +10,16 @@ export default function ProtectedLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
-  const { data: user, isLoading } = useGetMe();
+  const { data: user, isLoading, isError } = useGetMe();
 
   useEffect(() => {
-    if (!isLoading && !user) {
+    if (!isLoading && (!user || isError)) {
+      if (isError) {
+        localStorage.removeItem("token");
+      }
       router.push("/login");
     }
-  }, [isLoading, user, router]);
+  }, [isLoading, user, isError, router]);
 
   if (isLoading) {
     return (

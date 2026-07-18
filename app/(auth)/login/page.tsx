@@ -11,6 +11,11 @@ import { FaGoogle } from "react-icons/fa";
 import { useLogin } from "@/hooks/useAuth";
 import axios from "axios";
 
+const DEMO_CREDENTIALS = {
+  email: "demo@diagramcraft.ai",
+  password: "Demo@123",
+} as const;
+
 const loginSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email format"),
   password: z.string().min(6, "Password must be at least 6 characters"),
@@ -26,7 +31,6 @@ export default function LoginPage() {
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -55,14 +59,26 @@ export default function LoginPage() {
   };
 
   const handleDemoLogin = () => {
-    setValue("email", "demo@diagramcraft.ai", { shouldValidate: true });
-    setValue("password", "Demo@123", { shouldValidate: true });
-    handleSubmit(onSubmit)();
+    setLoginError(null);
+    login(DEMO_CREDENTIALS, {
+      onSuccess: () => {
+        router.push("/dashboard");
+      },
+      onError: (error: Error) => {
+        if (axios.isAxiosError(error)) {
+          setLoginError(
+            error.response?.data?.message ||
+              "Failed to login with demo account. Please try again.",
+          );
+        } else {
+          setLoginError(error.message || "An unexpected error occurred.");
+        }
+      },
+    });
   };
 
   const handleGoogleLogin = () => {
-    // Placeholder function for Google Login
-    console.log("Google Login initiated");
+    setLoginError("Google login is not available yet.");
   };
 
   return (
