@@ -58,23 +58,25 @@ export default function LoginPage() {
     });
   };
 
-  const handleDemoLogin = () => {
+  const handleDemoLogin = async () => {
     setLoginError(null);
-    login(DEMO_CREDENTIALS, {
-      onSuccess: () => {
-        router.push("/dashboard");
-      },
-      onError: (error: Error) => {
-        if (axios.isAxiosError(error)) {
-          setLoginError(
-            error.response?.data?.message ||
-            "Failed to login with demo account. Please try again.",
-          );
-        } else {
-          setLoginError(error.message || "An unexpected error occurred.");
-        }
-      },
-    });
+    
+    // Directly call the mutation without form validation
+    login(
+      { email: "demo@diagramcraft.ai", password: "Demo@123" },
+      {
+        onSuccess: () => {
+          router.push("/dashboard");
+        },
+        onError: (error: any) => {
+          const message =
+            error?.response?.data?.message ||
+            error?.message ||
+            "Failed to login with demo account. Please try again.";
+          setLoginError(message);
+        },
+      }
+    );
   };
 
   const handleGoogleLogin = () => {
@@ -159,7 +161,6 @@ export default function LoginPage() {
           <button
             type="button"
             onClick={handleDemoLogin}
-            disabled={isPending}
             className="w-full border border-indigo-200 text-indigo-700 bg-indigo-50 hover:bg-indigo-100 rounded-xl py-2.5 font-medium transition-colors flex justify-center items-center gap-2 disabled:opacity-70"
           >
             Demo Login (Auto Fill)
