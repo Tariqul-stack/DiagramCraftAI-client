@@ -46,11 +46,8 @@ export default function DiagramAddPage() {
   const isGenerating = aiGenerate.isPending || aiRegenerate.isPending;
 
   useEffect(() => {
-    if (!mermaidCode) {
-      return;
-    }
-
-    renderMermaid("#diagram-preview .mermaid");
+    if (!mermaidCode) return;
+    renderMermaid("#diagram-preview", mermaidCode);
   }, [mermaidCode]);
 
   const handleGenerate = () => {
@@ -240,11 +237,7 @@ with email verification and OAuth options`}
                 <div
                   id="diagram-preview"
                   className="min-h-80 rounded-xl border border-gray-200 bg-gray-50 p-4 overflow-x-auto"
-                >
-                  <div key={mermaidCode} className="mermaid">
-                    {mermaidCode}
-                  </div>
-                </div>
+                />
               )}
             </div>
 

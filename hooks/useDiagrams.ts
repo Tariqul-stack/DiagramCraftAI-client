@@ -32,7 +32,7 @@ export function useGetDiagramById(id: string) {
     queryKey: ["diagram", id],
     queryFn: async () => {
       const response = await api.get<{ success: boolean; data: Diagram }>(`/api/diagrams/${id}`);
-      return response.data.data;
+      return response.data.data.diagram;
     },
     enabled: !!id,
   });

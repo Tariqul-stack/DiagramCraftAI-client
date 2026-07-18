@@ -19,11 +19,8 @@ export default function DiagramDetailsPage() {
   const [copiedLink, setCopiedLink] = useState(false);
 
   useEffect(() => {
-    if (!diagram?.mermaidCode) {
-      return;
-    }
-
-    renderMermaid("#diagram-preview .mermaid");
+    if (!diagram?.mermaidCode) return;
+    renderMermaid("#details-diagram-preview", diagram.mermaidCode);
   }, [diagram?.mermaidCode]);
 
   if (isLoading) {
@@ -137,13 +134,10 @@ export default function DiagramDetailsPage() {
             <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 overflow-hidden">
               <h2 className="text-lg font-bold text-gray-900 mb-6">Diagram Preview</h2>
               
-              <div className="w-full overflow-x-auto bg-gray-50 rounded-xl border border-gray-100 p-4 mb-6 flex justify-center min-h-[300px]">
-                <div id="diagram-preview" className="w-full flex justify-center items-center">
-                  <div key={diagram.mermaidCode} className="mermaid">
-                    {diagram.mermaidCode}
-                  </div>
-                </div>
-              </div>
+              <div
+                id="details-diagram-preview"
+                className="w-full overflow-x-auto bg-gray-50 rounded-xl border border-gray-100 p-4 mb-6 min-h-[300px]"
+              />
 
               <div>
                 <div className="flex items-center justify-between mb-2">

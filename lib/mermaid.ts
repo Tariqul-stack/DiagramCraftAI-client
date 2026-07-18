@@ -2,25 +2,26 @@ import mermaid from "mermaid";
 
 let initialized = false;
 
-export function initMermaid() {
-  if (initialized) {
-    return;
+export async function renderMermaid(containerSelector: string, code: string) {
+  if (!initialized) {
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: "default",
+      securityLevel: "loose",
+    });
+    initialized = true;
   }
 
-  mermaid.initialize({
-    startOnLoad: false,
-    theme: "default",
-    securityLevel: "loose",
-  });
-  initialized = true;
-}
-
-export async function renderMermaid(selector: string) {
-  initMermaid();
-
   try {
-    await mermaid.run({ querySelector: selector });
+    const container = document.querySelector(containerSelector);
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    const id = "mermaid-svg-" + Date.now();
+    const { svg } = await mermaid.render(id, code);
+    container.innerHTML = svg;
   } catch (error) {
-    // Ignore to prevent console errors on failed parses
+    console.error("Mermaid render error:", error);
   }
 }
