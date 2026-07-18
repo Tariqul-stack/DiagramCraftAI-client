@@ -75,7 +75,7 @@ export default function HeroSection() {
             >
               <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/30 border border-indigo-400/40 text-indigo-200 text-xs font-semibold tracking-wide backdrop-blur-sm">
                 <Sparkles size={13} />
-                ✨ AI-Powered Diagram Generator
+                AI-Powered Diagram Generator
               </span>
             </motion.div>
 
