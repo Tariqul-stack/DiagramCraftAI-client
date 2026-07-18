@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { useGetDiagramById, useToggleLike } from "@/hooks/useDiagrams";
+import { AIChatPanel } from "@/components/ai/AIChatPanel";
 import mermaid from "mermaid";
 import { Heart, Share2, Copy, Check, ArrowLeft, Plus } from "lucide-react";
 
@@ -198,7 +199,7 @@ export default function DiagramDetailsPage() {
           </div>
 
           {/* Right Column */}
-          <div className="lg:col-span-1 space-y-6">
+          <div className="lg:col-span-1 flex flex-col gap-6">
             {/* Actions Card */}
             <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
               <div className="grid grid-cols-2 gap-3 mb-4">
@@ -262,6 +263,8 @@ export default function DiagramDetailsPage() {
                 </Link>
               </div>
             </div>
+
+            <AIChatPanel diagramCode={diagram?.mermaidCode || ""} />
 
             {/* Details Card */}
             <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
