@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import "./globals.css";
 import Providers from "./providers";
 import Navbar from "@/components/layout/Navbar";
@@ -25,13 +26,15 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className="bg-white text-gray-900 antialiased">
-        <Providers>
-          <div className="min-h-screen flex flex-col">
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
-        </Providers>
+        <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}>
+          <Providers>
+            <div className="min-h-screen flex flex-col">
+              <Navbar />
+              <main className="flex-1 pt-20">{children}</main>
+              <Footer />
+            </div>
+          </Providers>
+        </GoogleOAuthProvider>
       </body>
     </html>
   );

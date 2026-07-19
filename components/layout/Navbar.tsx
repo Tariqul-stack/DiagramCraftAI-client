@@ -9,9 +9,10 @@ import { useGetMe, useLogout } from "@/hooks/useAuth";
 // ─── Nav link definitions ─────────────────────────────────────────────────────
 
 const publicLinks = [
-  { href: "/", label: "Home" },
-  { href: "/explore", label: "Explore" },
+  { href: "#features", label: "Features" },
+  { href: "#how-it-works", label: "Solutions" },
   { href: "/pricing", label: "Pricing" },
+  { href: "/contact", label: "Contact" },
 ];
 
 const privateLinks = [
@@ -36,24 +37,24 @@ export default function Navbar() {
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   const linkClass = (href: string) =>
-    `text-sm font-medium transition-colors duration-150 hover:text-indigo-600 ${
-      isActive(href) ? "text-indigo-600 font-semibold" : "text-gray-600"
+    `text-sm font-medium transition-colors duration-150 ${
+      isActive(href) ? "text-blue-600" : "text-slate-600 hover:text-slate-900"
     }`;
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-gray-200/80 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-6">
+    <header className="fixed top-0 left-0 right-0 z-50 px-4 pt-4">
+      <div className="max-w-7xl mx-auto rounded-2xl border border-slate-200 bg-white/95 backdrop-blur-md px-6 h-14 flex items-center justify-between gap-6 shadow-md">
 
         {/* ── Logo ── */}
         <Link href="/" className="flex items-center gap-2 shrink-0">
-          <Zap size={20} className="text-indigo-600" />
-          <span className="text-base font-bold text-gray-900 tracking-tight">
+          <Zap size={18} className="text-blue-600" />
+          <span className="text-sm font-bold text-slate-900 tracking-tight hidden sm:block">
             DiagramCraft AI
           </span>
         </Link>
 
         {/* ── Desktop nav ── */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center justify-center gap-8 flex-1">
           {navLinks.map(({ href, label }) => (
             <Link key={href} href={href} className={linkClass(href)}>
               {label}
@@ -66,14 +67,14 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             {user ? (
               <>
-                <span className="flex items-center gap-1.5 text-sm text-gray-700 font-medium">
-                  <User size={15} className="text-gray-500" />
+                <span className="flex items-center gap-1.5 text-sm text-slate-700 font-medium">
+                  <User size={15} className="text-slate-500" />
                   {user.name}
                 </span>
                 <button
                   onClick={() => logout.mutate()}
                   disabled={logout.isPending}
-                  className="flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-red-500 transition-colors duration-150 disabled:opacity-50"
+                  className="flex items-center gap-1.5 text-sm font-medium text-slate-500 hover:text-red-500 transition-colors duration-150 disabled:opacity-50"
                 >
                   <LogOut size={15} />
                   {logout.isPending ? "Logging out…" : "Logout"}
@@ -83,13 +84,13 @@ export default function Navbar() {
               <>
                 <Link
                   href="/login"
-                  className="text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors duration-150"
+                  className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors duration-150"
                 >
-                  Login
+                  Sign In
                 </Link>
                 <Link
                   href="/register"
-                  className="text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 transition-all duration-200 px-6 py-3 rounded-xl"
+                  className="text-sm font-semibold text-white bg-blue-600 hover:bg-blue-500 transition-colors duration-150 px-4 py-2 rounded-xl"
                 >
                   Get Started
                 </Link>
@@ -99,7 +100,7 @@ export default function Navbar() {
 
           {/* ── Hamburger (mobile) ── */}
           <button
-            className="md:hidden p-1.5 rounded-md text-gray-600 hover:bg-gray-100 transition-colors"
+            className="md:hidden p-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
             onClick={() => setMobileOpen((o) => !o)}
             aria-label="Toggle menu"
           >
@@ -110,7 +111,7 @@ export default function Navbar() {
 
       {/* ── Mobile menu ── */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-gray-100 bg-white px-4 py-4 flex flex-col gap-4">
+        <div className="md:hidden mt-2 rounded-2xl border border-slate-200 bg-white/95 backdrop-blur-xl px-4 py-4 flex flex-col gap-4">
           <nav className="flex flex-col gap-3">
             {navLinks.map(({ href, label }) => (
               <Link
@@ -124,11 +125,11 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <div className="border-t border-gray-100 pt-3 flex flex-col gap-3">
+          <div className="border-t border-slate-100 pt-3 flex flex-col gap-3">
             {user ? (
               <>
-                <span className="flex items-center gap-1.5 text-sm text-gray-700 font-medium">
-                  <User size={15} className="text-gray-500" />
+                <span className="flex items-center gap-1.5 text-sm text-slate-700 font-medium">
+                  <User size={15} className="text-slate-500" />
                   {user.name}
                 </span>
                 <button
@@ -137,7 +138,7 @@ export default function Navbar() {
                     setMobileOpen(false);
                   }}
                   disabled={logout.isPending}
-                  className="flex items-center gap-1.5 text-sm font-medium text-red-500 hover:text-red-600 transition-colors disabled:opacity-50"
+                  className="flex items-center gap-1.5 text-sm font-medium text-slate-500 hover:text-red-500 transition-colors duration-150 disabled:opacity-50"
                 >
                   <LogOut size={15} />
                   {logout.isPending ? "Logging out…" : "Logout"}
@@ -147,14 +148,14 @@ export default function Navbar() {
               <>
                 <Link
                   href="/login"
-                  className="text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors"
+                  className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
                   onClick={() => setMobileOpen(false)}
                 >
                   Login
                 </Link>
                 <Link
                   href="/register"
-                  className="text-sm font-semibold text-center text-white bg-indigo-600 hover:bg-indigo-700 transition-all duration-200 px-6 py-3 rounded-xl"
+                  className="text-sm font-semibold text-center text-white bg-blue-600 hover:bg-blue-500 transition-colors duration-150 px-4 py-2 rounded-xl"
                   onClick={() => setMobileOpen(false)}
                 >
                   Get Started

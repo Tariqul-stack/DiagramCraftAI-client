@@ -8,7 +8,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Zap, Loader2 } from "lucide-react";
 import { FaGoogle } from "react-icons/fa";
+import { GoogleLogin } from "@react-oauth/google";
 import { useLogin } from "@/hooks/useAuth";
+import api from "@/lib/api";
 import axios from "axios";
 
 const DEMO_CREDENTIALS = {
@@ -166,14 +168,29 @@ export default function LoginPage() {
             Demo Login (Auto Fill)
           </button>
 
-          <button
-            type="button"
-            onClick={handleGoogleLogin}
-            className="w-full border border-gray-300 text-gray-700 bg-white hover:bg-gray-50 rounded-xl py-2.5 font-medium transition-colors flex justify-center items-center gap-2"
-          >
-            <FaGoogle className="text-red-500" />
-            Continue with Google
-          </button>
+          <div className="w-full flex justify-center">
+            <GoogleLogin
+              onSuccess={(credentialResponse) => {
+                if (!credentialResponse.credential) return;
+
+                api.post("/api/auth/google", {
+                  credential: credentialResponse.credential,
+                }).then((response) => {
+                  const token = response.data?.data?.token;
+                  if (token) {
+                    localStorage.setItem("token", token);
+                    router.push("/dashboard");
+                  }
+                }).catch((error) => {
+                  setLoginError("Google login failed. Please try again.");
+                });
+              }}
+              onError={() => {
+                setLoginError("Google login failed. Please try again.");
+              }}
+              width="100%"
+            />
+          </div>
         </div>
 
         <div className="mt-8 text-center text-sm text-gray-600">

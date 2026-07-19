@@ -12,12 +12,15 @@ export function useGetMe() {
   return useQuery<User>({
     queryKey: ["me"],
     queryFn: async () => {
+      const token = getToken();
+      if (!token) throw new Error("No token");
       const response = await api.get("/api/auth/me");
       return response.data?.data?.user;
     },
     enabled: !!getToken(),
     retry: false,
     staleTime: 1000 * 60 * 10,
+    gcTime: 1000 * 60 * 10,
   });
 }
 
@@ -56,9 +59,19 @@ export function useLogin() {
 export function useLogout() {
   return useMutation({
     mutationFn: async () => {
-      await api.post("/api/auth/logout");
+      try {
+        await api.post("/api/auth/logout");
+      } catch {
+        // ignore logout API errors
+      }
     },
     onSuccess: () => {
+      localStorage.removeItem("token");
+      queryClient.clear();
+      queryClient.removeQueries({ queryKey: ["me"] });
+      window.location.href = "/login";
+    },
+    onError: () => {
       localStorage.removeItem("token");
       queryClient.clear();
       window.location.href = "/login";
