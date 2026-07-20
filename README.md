@@ -9,10 +9,11 @@
 
 ---
 
-## 🌐 Live Demo
+## Live Demo
 
-- **Frontend:** [https://diagram-craft-ai.vercel.app](https://diagram-craft-ai.vercel.app)
+- **Frontend:** [https://diagram-craft-ai-client-git-main-tariquldev0-1047s-projects.vercel.app](https://diagram-craft-ai-client-git-main-tariquldev0-1047s-projects.vercel.app)
 - **Backend:** [https://diagram-craft-ai-server.vercel.app](https://diagram-craft-ai-server.vercel.app)
+
 
 ### Demo Credentials
 ```
@@ -22,7 +23,7 @@ Password: Demo@123
 
 ---
 
-## 📌 Project Overview
+## Project Overview
 
 DiagramCraft AI is a full-stack web application where users describe what they want in plain English and the AI generates a live diagram instantly. It features a public gallery, user dashboard, AI chat assistant, and full diagram management.
 
@@ -33,9 +34,9 @@ User Types Prompt → Groq AI Processes → Mermaid Code Generated → Live Diag
 
 ---
 
-## ✨ Features
+## Features
 
-### 🤖 AI Features
+### AI Features
 - **Text-to-Diagram Generator** — Type a plain English prompt, AI generates valid Mermaid.js diagram code instantly
 - **AI Chat Assistant** — Conversational AI that understands your diagram, explains it, and suggests improvements with full conversation history
 
@@ -60,7 +61,7 @@ User Types Prompt → Groq AI Processes → Mermaid Code Generated → Live Diag
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
 | Technology | Version | Purpose |
@@ -349,6 +350,6 @@ Each diagram type has a custom system prompt that includes:
 
 ---
 
-## 📝 License
+## License
 
 This project is licensed under the MIT License.
