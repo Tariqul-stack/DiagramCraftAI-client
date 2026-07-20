@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useGetMe } from "@/hooks/useAuth";
 import { useGetMyDiagrams } from "@/hooks/useDiagrams";
+import type { Diagram } from "@/types/diagram.types";
 import { LayoutDashboard, Globe, Lock, Heart, Plus, Eye } from "lucide-react";
 import {
   PieChart,
@@ -22,7 +23,7 @@ const PIE_COLORS = ['#4F46E5', '#9333EA', '#06B6D4', '#10B981', '#F97316', '#EC4
 export default function DashboardPage() {
   const { data: user } = useGetMe();
   const { data: myDiagramsData, isLoading } = useGetMyDiagrams();
-  const diagrams = Array.isArray(myDiagramsData) 
+  const diagrams: Diagram[] = Array.isArray(myDiagramsData) 
   ? myDiagramsData 
   : (myDiagramsData as any)?.data?.diagrams ?? [];
 
