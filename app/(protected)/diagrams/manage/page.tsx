@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { DIAGRAM_TYPES } from "@/constants/diagramTypes";
 import { useDeleteDiagram, useGetMyDiagrams } from "@/hooks/useDiagrams";
-import type { DiagramType, DiagramVisibility } from "@/types/diagram.types";
+import type { Diagram, DiagramType, DiagramVisibility } from "@/types/diagram.types";
 
 const DIAGRAM_ICONS: Record<DiagramType, LucideIcon> = {
   flowchart: GitBranch,
@@ -44,7 +44,7 @@ const formatCreatedDate = (date: string) =>
 
 export default function DiagramManagePage() {
   const { data: myDiagramsData, isLoading } = useGetMyDiagrams();
-  const diagrams = myDiagramsData?.data?.diagrams ?? myDiagramsData?.diagrams ?? (Array.isArray(myDiagramsData) ? myDiagramsData : []);
+  const diagrams: Diagram[] = (myDiagramsData as Diagram[]) ?? [];
   const deleteDiagram = useDeleteDiagram();
 
   const publicCount = diagrams.filter(
