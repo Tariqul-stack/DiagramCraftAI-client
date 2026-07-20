@@ -11,7 +11,7 @@
 
 ## Live Demo
 
-- **Frontend:** [https://diagram-craft-ai-client-git-main-tariquldev0-1047s-projects.vercel.app](https://diagram-craft-ai-client-git-main-tariquldev0-1047s-projects.vercel.app)
+- **Frontend:** [https://diagram-craft-ai-client.vercel.app](https://diagram-craft-ai-client.vercel.app)
 - **Backend:** [https://diagram-craft-ai-server.vercel.app](https://diagram-craft-ai-server.vercel.app)
 
 
