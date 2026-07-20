@@ -43,8 +43,7 @@ const formatCreatedDate = (date: string) =>
   }).format(new Date(date));
 
 export default function DiagramManagePage() {
-  const { data: myDiagramsData, isLoading } = useGetMyDiagrams();
-  const diagrams: Diagram[] = (myDiagramsData as Diagram[]) ?? [];
+  const { data: diagrams = [], isLoading } = useGetMyDiagrams();
   const deleteDiagram = useDeleteDiagram();
 
   const publicCount = diagrams.filter(

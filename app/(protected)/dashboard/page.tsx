@@ -22,8 +22,7 @@ const PIE_COLORS = ['#4F46E5', '#9333EA', '#06B6D4', '#10B981', '#F97316', '#EC4
 
 export default function DashboardPage() {
   const { data: user } = useGetMe();
-  const { data: myDiagramsData, isLoading } = useGetMyDiagrams();
-  const diagrams: Diagram[] = (myDiagramsData as Diagram[]) ?? [];
+  const { data: diagrams = [], isLoading } = useGetMyDiagrams();
 
   const totalDiagrams = diagrams.length;
   const publicDiagrams = diagrams.filter((d) => d.visibility === "public").length;

@@ -31,7 +31,7 @@ export function useGetDiagramById(id: string) {
   return useQuery<Diagram>({
     queryKey: ["diagram", id],
     queryFn: async () => {
-      const response = await api.get<{ success: boolean; data: Diagram }>(`/api/diagrams/${id}`);
+      const response = await api.get<{ success: boolean; data: { diagram: Diagram } }>(`/api/diagrams/${id}`);
       return response.data.data.diagram;
     },
     enabled: !!id,
@@ -44,8 +44,8 @@ export function useGetMyDiagrams() {
   return useQuery<Diagram[]>({
     queryKey: ["myDiagrams"],
     queryFn: async () => {
-      const response = await api.get<{ success: boolean; data: Diagram[] }>("/api/diagrams/user/my");
-      return response.data.data;
+      const response = await api.get<{ success: boolean; data: { diagrams: Diagram[] } }> ("/api/diagrams/user/my");
+      return response.data.data.diagrams ?? [];
     },
   });
 }
