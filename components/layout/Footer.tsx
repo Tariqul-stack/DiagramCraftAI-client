@@ -111,7 +111,7 @@ export default function Footer() {
         {/* ── Bottom bar ── */}
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-sm text-gray-500">
-            © 2025 DiagramCraft AI. All rights reserved.
+            © 2026 DiagramCraft AI. All rights reserved.
           </p>
           <p className="text-sm text-gray-500">
             Built with Next.js and Groq AI

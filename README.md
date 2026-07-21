@@ -306,22 +306,6 @@ Each diagram type has a custom system prompt that includes:
 
 ---
 
-## Deployment
-
-### Frontend — Vercel
-1. Push `diagram_craft_ai-client` to GitHub
-2. Import project on [vercel.com](https://vercel.com)
-3. Add environment variables:
-   - `NEXT_PUBLIC_API_URL` = your Railway/Vercel backend URL
-   - `NEXT_PUBLIC_GOOGLE_CLIENT_ID` = your Google Client ID
-
-### Backend — Vercel
-1. Push `diagram_craft_ai-server` to GitHub
-2. Import project on [vercel.com](https://vercel.com)
-3. Add all environment variables from `.env`
-
----
-
 ## Pages
 
 | Route | Page | Access |

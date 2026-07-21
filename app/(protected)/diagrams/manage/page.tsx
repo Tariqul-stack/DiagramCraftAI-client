@@ -75,7 +75,7 @@ export default function DiagramManagePage() {
           </div>
           <Link
             href="/diagrams/add"
-            className="inline-flex items-center justify-center bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-indigo-700 transition-colors"
+            className="inline-flex items-center justify-center bg-indigo-600 text-whitepx-4 py-2 rounded-xl text-sm font-semibold hover:bg-indigo-700 transition-colors"
           >
             Create New
           </Link>
